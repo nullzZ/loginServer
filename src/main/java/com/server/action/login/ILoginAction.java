@@ -10,10 +10,10 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface ILoginAction {
     /**
-     * anysdk登录回调
+     * sdk登录回调
      * 
      * @param request
      * @param response
      */
-    public void anySDKCall(HttpServletRequest request, HttpServletResponse response);
+    public void sdkCall(HttpServletRequest request, HttpServletResponse response);
 }

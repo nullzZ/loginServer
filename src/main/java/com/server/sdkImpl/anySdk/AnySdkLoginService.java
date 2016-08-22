@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import com.server.ChannelEnum;
 import com.server.Config;
 import com.server.service.login.ILoginService;
 import com.server.util.AnySdkHttpUtil;
@@ -47,7 +48,8 @@ public class AnySdkLoginService implements ILoginService {
     }
 
     @Override
-    public boolean sendToken2GameServer(String userId, String serverID, String channelID, String accessToken) {
+    public boolean sendToken2GameServer(long u, String serverID, String channelID, String accessToken) {
+	String userId = String.valueOf(u);
 	short usernameLength = (short) userId.length();
 	short keyLength = (short) Config.KEY.length();
 	short valueLength = (short) Config.VALUE.length();
@@ -77,7 +79,7 @@ public class AnySdkLoginService implements ILoginService {
 	OutputStream sOutputStream = null;
 
 	try {
-	    String host = Config.SERVERS_CONFIG.getString(channelID + "_" + serverID);// 这里必须用channelId+ServerId来区分服务器的唯一
+	    String host = Config.getServerHost(ChannelEnum.ANY_SDK.value, channelID, serverID);// 这里必须用channelId+ServerId来区分服务器的唯一
 	    if (socket == null)
 		socket = new Socket(host, Config.PORT);
 	    if (sInputStream == null)

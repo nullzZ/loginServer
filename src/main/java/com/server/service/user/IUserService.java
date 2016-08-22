@@ -17,4 +17,7 @@ public interface IUserService {
 
     public UserRecord selectUserRecordByDB(ChannelEnum channelEnum, String sdk_uid, String channel);
 
+    public boolean updateUserRecord(UserRecord user);
+
+    public UserRecord register(ChannelEnum channelEnum, String uid, String serverID, String channelID);
 }

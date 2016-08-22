@@ -87,4 +87,23 @@ public class UserService implements IUserService {
 	}
     }
 
+    @Override
+    public boolean updateUserRecord(UserRecord user) {
+	return userRecordMapper.updateByPrimaryKeySelective(user) > 0;
+    }
+
+    @Override
+    public UserRecord register(ChannelEnum channelEnum, String uid, String serverID, String channelID) {
+	UserRecord userRecord = this.getUser(channelEnum, uid, channelID);
+	if (null == userRecord) {
+	    userRecord = this.createUser(channelEnum, uid, channelID, serverID);
+	    if (null == userRecord) {
+		logger.debug("[登陆][注册用户失败]");
+		return null;
+	    }
+	    logger.debug("[登陆][注册用户成功]");
+	}
+	return userRecord;
+    }
+
 }

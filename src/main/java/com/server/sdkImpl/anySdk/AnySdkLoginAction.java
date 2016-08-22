@@ -33,7 +33,7 @@ public class AnySdkLoginAction implements ILoginAction {
 
     @Override
     @RequestMapping(value = "/anysdk/loginReCall", method = RequestMethod.GET)
-    public void anySDKCall(HttpServletRequest request, HttpServletResponse response) {
+    public void sdkCall(HttpServletRequest request, HttpServletResponse response) {
 	try {
 
 	    if (!anySdkLoginService.checkParameter(request)) {
@@ -61,25 +61,20 @@ public class AnySdkLoginAction implements ILoginAction {
 	    // String channelID = "0"; // 渠道ID
 	    // ===================test======
 
+	    UserRecord userRecord = userService.register(ChannelEnum.ANY_SDK, uid, serverID, channelID);
+	    if (null == userRecord) {
+		logger.debug("[登陆][注册用户失败]" + retJson);
+		HttpUtil.write(response, "Unknown error!");
+		return;
+	    }
+
 	    UniqueID uniqueId = new UniqueID(Integer.parseInt(serverID));// 生成token
 	    String accessToken = Long.toString(uniqueId.Get());
 
-	    UserRecord userRecord = userService.getUser(ChannelEnum.ANY_SDK, uid, channelID);
-	    if (null == userRecord) {
-		userRecord = userService.createUser(ChannelEnum.ANY_SDK, uid, channelID, serverID);
-		if (null == userRecord) {
-		    logger.debug("[登陆][注册用户失败]" + retJson);
-		    HttpUtil.write(response, "Unknown error!");
-		    return;
-		}
-		logger.debug("[登陆][注册用户成功]" + retJson);
+	    // userRecord.setLastServerId(serverID);
 
-	    }
-
-	    userRecord.setLastServerId(serverID);
-
-	    boolean ret = anySdkLoginService.sendToken2GameServer(String.valueOf(userRecord.getUserId()), serverID,
-		    channelID, accessToken);
+	    boolean ret = anySdkLoginService.sendToken2GameServer(userRecord.getUserId(), serverID, channelID,
+		    accessToken);
 	    if (!ret) {
 		HttpUtil.write(response, "Unknown error!");
 		logger.debug("[登陆][发送游戏服务器][异常]" + retJson);

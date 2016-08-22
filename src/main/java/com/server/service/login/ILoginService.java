@@ -35,5 +35,5 @@ public interface ILoginService {
      * @return
      * @throws Exception
      */
-    public boolean sendToken2GameServer(String userId, String serverID, String channelID, String accessToken);
+    public boolean sendToken2GameServer(long userId, String serverID, String channelID, String accessToken);
 }
