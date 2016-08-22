@@ -4,18 +4,28 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.json.JSONObject;
 
+import com.server.ChannelEnum;
+
 /**
  * 
  * @author nullzZ
  *
  */
 public interface ILoginService {
+
     /**
-     * 检测必要参数
      * 
-     * @param request
+     * @param channelEnum
+     *            sdk渠道id
+     * @param uid
+     *            sdk给的uid
+     * @param serverID
+     *            sdk的ServerId
+     * @param channelID
+     *            sdk的channel
+     * @return
      */
-    public boolean checkParameter(HttpServletRequest request);
+    public LoginResult handle(ChannelEnum channelEnum, String uid, String serverID, String channelID);
 
     /**
      * 回调SDK

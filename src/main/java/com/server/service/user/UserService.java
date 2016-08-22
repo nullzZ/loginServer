@@ -103,6 +103,9 @@ public class UserService implements IUserService {
 	    }
 	    logger.debug("[登陆][注册用户成功]");
 	}
+	userRecord.setLastServerId(serverID);
+	userRecord.setLoginTimestamp(new Date());
+	this.updateUserRecord(userRecord);//更新登录时间和服务器ID
 	return userRecord;
     }
 

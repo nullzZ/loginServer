@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.server.ChannelEnum;
 import com.server.Config;
-import com.server.service.login.ILoginService;
+import com.server.service.login.AbsLoginService;
 import com.server.util.AnySdkHttpUtil;
 
 /**
@@ -23,9 +23,8 @@ import com.server.util.AnySdkHttpUtil;
  *
  */
 @Service
-public class AnySdkLoginService implements ILoginService {
+public class AnySdkLoginService extends AbsLoginService {
 
-    @Override
     public boolean checkParameter(HttpServletRequest request) {
 	Map<String, String[]> params = request.getParameterMap();
 	// 检测必要参数

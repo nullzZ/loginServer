@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.server.ChannelEnum;
 import com.server.action.login.ILoginAction;
-import com.server.db.model.UserRecord;
+import com.server.service.login.LoginResult;
 import com.server.service.user.UserService;
 import com.server.util.HttpUtil;
-import com.server.util.UniqueID;
 
 /**
  * 
@@ -36,52 +35,39 @@ public class AnySdkLoginAction implements ILoginAction {
     public void sdkCall(HttpServletRequest request, HttpServletResponse response) {
 	try {
 
-	    if (!anySdkLoginService.checkParameter(request)) {
-		HttpUtil.write(response, "parameter not complete");
-		logger.debug("[登陆][fail]parameter not complete");
-		return;
-	    }
+//	    if (!anySdkLoginService.checkParameter(request)) {
+//		HttpUtil.write(response, "parameter not complete");
+//		logger.debug("[登陆][fail]parameter not complete");
+//		return;
+//	    }
+//
+//	    JSONObject retJson = anySdkLoginService.reCallSdk(request);
+//	    if (null == retJson || !"ok".equals(retJson.getString("status"))) {
+//		HttpUtil.write(response, "Unknown error!");
+//		logger.debug("[登陆][Unknown error!]" + retJson);
+//		return;
+//	    }
+//
+//	    if (!retJson.has("common")) {
+//		HttpUtil.write(response, "Unknown error!");
+//		return;
+//	    }
+//	    JSONObject common = retJson.getJSONObject("common");
+//	    String uid = common.getString("uid"); // 用户id
+//	    String serverID = common.getString("server_id"); // 服务器ID
+//	    String channelID = common.getString("channel"); // 渠道ID
+	    
+	    JSONObject retJson = new JSONObject();
+	    String uid = "11";
+	    String serverID ="22"; // 服务器ID
+	    String channelID = "33"; // 渠道ID
 
-	    JSONObject retJson = anySdkLoginService.reCallSdk(request);
-	    if (null == retJson || !"ok".equals(retJson.getString("status"))) {
+	    LoginResult result = anySdkLoginService.handle(ChannelEnum.ANY_SDK, uid, serverID, channelID);
+	    if (null == result) {
 		HttpUtil.write(response, "Unknown error!");
-		logger.debug("[登陆][Unknown error!]" + retJson);
 		return;
 	    }
-
-	    JSONObject common = retJson.getJSONObject("common");
-	    String uid = common.getString("uid"); // 用户id
-	    String serverID = common.getString("server_id"); // 服务器ID
-	    String channelID = common.getString("channel"); // 渠道ID
-
-	    // ===================test======
-	    // JSONObject retJson = new JSONObject();
-	    // String uid = "111111"; // 用户id
-	    // String serverID = "1"; // 服务器ID
-	    // String channelID = "0"; // 渠道ID
-	    // ===================test======
-
-	    UserRecord userRecord = userService.register(ChannelEnum.ANY_SDK, uid, serverID, channelID);
-	    if (null == userRecord) {
-		logger.debug("[登陆][注册用户失败]" + retJson);
-		HttpUtil.write(response, "Unknown error!");
-		return;
-	    }
-
-	    UniqueID uniqueId = new UniqueID(Integer.parseInt(serverID));// 生成token
-	    String accessToken = Long.toString(uniqueId.Get());
-
-	    // userRecord.setLastServerId(serverID);
-
-	    boolean ret = anySdkLoginService.sendToken2GameServer(userRecord.getUserId(), serverID, channelID,
-		    accessToken);
-	    if (!ret) {
-		HttpUtil.write(response, "Unknown error!");
-		logger.debug("[登陆][发送游戏服务器][异常]" + retJson);
-		return;
-	    }
-
-	    retJson.put("ext", String.valueOf(userRecord.getUserId()) + "," + accessToken);
+	    retJson.put("ext", String.valueOf(result.getUserId()) + "," + result.getToken());
 	    HttpUtil.write(response, retJson);
 	    logger.debug("[登陆][ok]" + retJson);
 	} catch (Exception e) {
