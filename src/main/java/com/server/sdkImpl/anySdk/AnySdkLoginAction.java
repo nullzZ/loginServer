@@ -35,32 +35,32 @@ public class AnySdkLoginAction implements ILoginAction {
     public void sdkCall(HttpServletRequest request, HttpServletResponse response) {
 	try {
 
-//	    if (!anySdkLoginService.checkParameter(request)) {
-//		HttpUtil.write(response, "parameter not complete");
-//		logger.debug("[登陆][fail]parameter not complete");
-//		return;
-//	    }
-//
-//	    JSONObject retJson = anySdkLoginService.reCallSdk(request);
-//	    if (null == retJson || !"ok".equals(retJson.getString("status"))) {
-//		HttpUtil.write(response, "Unknown error!");
-//		logger.debug("[登陆][Unknown error!]" + retJson);
-//		return;
-//	    }
-//
-//	    if (!retJson.has("common")) {
-//		HttpUtil.write(response, "Unknown error!");
-//		return;
-//	    }
-//	    JSONObject common = retJson.getJSONObject("common");
-//	    String uid = common.getString("uid"); // 用户id
-//	    String serverID = common.getString("server_id"); // 服务器ID
-//	    String channelID = common.getString("channel"); // 渠道ID
+	    if (!anySdkLoginService.checkParameter(request)) {
+		HttpUtil.write(response, "parameter not complete");
+		logger.debug("[登陆][fail]parameter not complete");
+		return;
+	    }
+
+	    JSONObject retJson = anySdkLoginService.reCallSdk(request);
+	    if (null == retJson || !"ok".equals(retJson.getString("status"))) {
+		HttpUtil.write(response, "Unknown error!");
+		logger.debug("[登陆][Unknown error!]" + retJson);
+		return;
+	    }
+
+	    if (!retJson.has("common")) {
+		HttpUtil.write(response, "Unknown error!");
+		return;
+	    }
+	    JSONObject common = retJson.getJSONObject("common");
+	    String uid = common.getString("uid"); // 用户id
+	    String serverID = common.getString("server_id"); // 服务器ID
+	    String channelID = common.getString("channel"); // 渠道ID
 	    
-	    JSONObject retJson = new JSONObject();
-	    String uid = "11";
-	    String serverID ="22"; // 服务器ID
-	    String channelID = "33"; // 渠道ID
+//	    JSONObject retJson = new JSONObject();
+//	    String uid = "11";
+//	    String serverID ="22"; // 服务器ID
+//	    String channelID = "33"; // 渠道ID
 
 	    LoginResult result = anySdkLoginService.handle(ChannelEnum.ANY_SDK, uid, serverID, channelID);
 	    if (null == result) {
