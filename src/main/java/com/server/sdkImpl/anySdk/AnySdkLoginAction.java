@@ -56,13 +56,16 @@ public class AnySdkLoginAction implements ILoginAction {
 	    String uid = common.getString("uid"); // 用户id
 	    String serverID = common.getString("server_id"); // 服务器ID
 	    String channelID = common.getString("channel"); // 渠道ID
-	    
-//	    JSONObject retJson = new JSONObject();
-//	    String uid = "11";
-//	    String serverID ="22"; // 服务器ID
-//	    String channelID = "33"; // 渠道ID
+	    String device = "";
+	    String deviceVersion = "";
+	    String loginIP = "";
+	    // JSONObject retJson = new JSONObject();
+	    // String uid = "11";
+	    // String serverID ="22"; // 服务器ID
+	    // String channelID = "33"; // 渠道ID
 
-	    LoginResult result = anySdkLoginService.handle(ChannelEnum.ANY_SDK, uid, serverID, channelID);
+	    LoginResult result = anySdkLoginService.handle(ChannelEnum.ANY_SDK, uid, serverID, channelID, device,
+		    deviceVersion, loginIP);
 	    if (null == result) {
 		HttpUtil.write(response, "Unknown error!");
 		return;

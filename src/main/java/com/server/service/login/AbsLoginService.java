@@ -18,8 +18,10 @@ public abstract class AbsLoginService implements ILoginService {
     private UserService userService;
     private static final Logger logger = Logger.getLogger(AbsLoginService.class);
 
-    public LoginResult handle(ChannelEnum channelEnum, String uid, String serverID, String channelID) {
-	UserRecord userRecord = userService.register(channelEnum, uid, serverID, channelID);
+    public LoginResult handle(ChannelEnum channelEnum, String uid, String serverID, String channelID, String device,
+	    String deviceVersion, String loginIP) {
+	UserRecord userRecord = userService.register(channelEnum, uid, serverID, channelID, device, deviceVersion,
+		loginIP);
 	if (null == userRecord) {
 	    logger.debug("[登陆][注册用户失败]channelEnum:" + channelEnum.value + "|uid:" + uid + "|serverID:" + serverID
 		    + "|channelID:" + channelID);

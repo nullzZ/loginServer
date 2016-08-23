@@ -25,7 +25,8 @@ public interface ILoginService {
      *            sdk的channel
      * @return
      */
-    public LoginResult handle(ChannelEnum channelEnum, String uid, String serverID, String channelID);
+    public LoginResult handle(ChannelEnum channelEnum, String uid, String serverID, String channelID, String device,
+	    String deviceVersion, String loginIP);
 
     /**
      * 回调SDK

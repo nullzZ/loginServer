@@ -11,7 +11,8 @@ import com.server.db.model.UserRecord;
 public interface IUserService {
     public boolean insertDB(UserRecord user);
 
-    public UserRecord createUser(ChannelEnum channelEnum, String sdk_uid, String channel, String lastServerId);
+    public UserRecord createUser(ChannelEnum channelEnum, String sdk_uid, String channel, String lastServerId,
+	    String device, String deviceVersion, String loginIP);
 
     public UserRecord getUser(ChannelEnum channelEnum, String sdk_uid, String channel);
 
@@ -19,5 +20,6 @@ public interface IUserService {
 
     public boolean updateUserRecord(UserRecord user);
 
-    public UserRecord register(ChannelEnum channelEnum, String uid, String serverID, String channelID);
+    public UserRecord register(ChannelEnum channelEnum, String uid, String serverID, String channelID, String device,
+	    String deviceVersion, String loginIP);
 }

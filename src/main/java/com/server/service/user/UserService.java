@@ -46,7 +46,8 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserRecord createUser(ChannelEnum channelEnum, String sdk_uid, String channel, String lastServerId) {
+    public UserRecord createUser(ChannelEnum channelEnum, String sdk_uid, String channel, String lastServerId,
+	    String device, String deviceVersion, String loginIP) {
 	UserRecord record = new UserRecord();
 	long userId = UqIdUtil.buildUqId();
 	record.setUserId(userId);
@@ -57,6 +58,9 @@ public class UserService implements IUserService {
 	Date d = new Date();
 	record.setCreateTime(d);
 	record.setLoginTimestamp(d);
+	record.setDevice(device);
+	record.setDeviceVersion(deviceVersion);
+	record.setLoginIP(loginIP);
 
 	if (this.insertDB(record)) {
 	    // UserCach.getInstance().put(record);
@@ -93,10 +97,11 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public UserRecord register(ChannelEnum channelEnum, String uid, String serverID, String channelID) {
+    public UserRecord register(ChannelEnum channelEnum, String uid, String serverID, String channelID, String device,
+	    String deviceVersion, String loginIP) {
 	UserRecord userRecord = this.getUser(channelEnum, uid, channelID);
 	if (null == userRecord) {
-	    userRecord = this.createUser(channelEnum, uid, channelID, serverID);
+	    userRecord = this.createUser(channelEnum, uid, channelID, serverID, device, deviceVersion, loginIP);
 	    if (null == userRecord) {
 		logger.debug("[登陆][注册用户失败]");
 		return null;
@@ -105,7 +110,7 @@ public class UserService implements IUserService {
 	}
 	userRecord.setLastServerId(serverID);
 	userRecord.setLoginTimestamp(new Date());
-	this.updateUserRecord(userRecord);//更新登录时间和服务器ID
+	this.updateUserRecord(userRecord);// 更新登录时间和服务器ID
 	return userRecord;
     }
 
