@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-08-19 16:31:53
+Date: 2016-08-23 13:55:56
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,6 +27,9 @@ CREATE TABLE `t_users` (
   `lastServerId` varchar(50) DEFAULT '0' COMMENT '最后服务器',
   `loginTimestamp` datetime DEFAULT NULL COMMENT '最后登录时间',
   `createTime` datetime DEFAULT NULL COMMENT '创建时间',
+  `device` varchar(100) DEFAULT '' COMMENT '设备ios还是android',
+  `deviceVersion` varchar(100) DEFAULT '' COMMENT '设备系统版本号',
+  `loginIP` varchar(100) DEFAULT '' COMMENT '登陆IP地址',
   PRIMARY KEY (`userId`),
   KEY `cdc` (`sdkCannel`,`sdk_uid`,`channel`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
