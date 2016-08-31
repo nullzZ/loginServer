@@ -1,4 +1,4 @@
-package com.server.service.user;
+package com.server.core.service;
 
 import com.server.ChannelEnum;
 import com.server.db.model.UserRecord;

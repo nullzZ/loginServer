@@ -1,4 +1,4 @@
-package com.server.service.login;
+package com.server.core.service;
 
 /**
  * @author nullzZ

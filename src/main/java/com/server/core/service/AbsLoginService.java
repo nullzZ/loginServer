@@ -1,4 +1,4 @@
-package com.server.service.login;
+package com.server.core.service;
 
 import javax.annotation.Resource;
 
@@ -6,7 +6,6 @@ import org.apache.log4j.Logger;
 
 import com.server.ChannelEnum;
 import com.server.db.model.UserRecord;
-import com.server.service.user.UserService;
 import com.server.util.UniqueID;
 
 /**

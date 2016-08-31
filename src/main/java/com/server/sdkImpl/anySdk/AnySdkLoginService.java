@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.server.ChannelEnum;
 import com.server.Config;
-import com.server.service.login.AbsLoginService;
+import com.server.core.service.AbsLoginService;
 import com.server.util.AnySdkHttpUtil;
 
 /**

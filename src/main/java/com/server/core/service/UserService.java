@@ -1,4 +1,4 @@
-package com.server.service.user;
+package com.server.core.service;
 
 import java.util.Date;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.server.ChannelEnum;
+import com.server.core.util.UqIdUtil;
 import com.server.db.dao.UserRecordMapper;
 import com.server.db.model.UserRecord;
 import com.server.db.model.UserRecordExample;
-import com.server.util.UqIdUtil;
 
 /**
  * 
