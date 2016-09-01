@@ -34,7 +34,7 @@ public class UserCach implements ICach<String, UserRecord> {
 
     @Override
     public UserRecord put(String key, UserRecord user) {
-	if (cach.size() > size) {
+	if (cach.size() >= size) {
 	    cach.clear();
 	    size = 0;
 	} else {

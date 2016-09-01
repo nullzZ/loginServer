@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.server.ChannelEnum;
+import com.server.core.cach.UserCach;
 import com.server.core.util.UqIdUtil;
 import com.server.db.dao.UserRecordMapper;
 import com.server.db.model.UserRecord;
@@ -63,7 +64,7 @@ public class UserService implements IUserService {
 	record.setLoginIP(loginIP);
 
 	if (this.insertDB(record)) {
-	    // UserCach.getInstance().put(record);
+	    UserCach.getInstance().put(getUserKey(channelEnum, sdk_uid, channel), record);
 	    return record;
 	} else {
 	    logger.error("创建user失败");
@@ -72,10 +73,18 @@ public class UserService implements IUserService {
 
     }
 
+    private String getUserKey(ChannelEnum channelEnum, String sdk_uid, String channel) {
+	return channelEnum.value + "_" + channel + "_" + sdk_uid;
+    }
+
     @Override
     public UserRecord getUser(ChannelEnum channelEnum, String sdk_uid, String channel) {
 	// 可以加入缓存
-	UserRecord record = this.selectUserRecordByDB(channelEnum, sdk_uid, channel);
+	UserRecord record = null;
+	record = UserCach.getInstance().get(getUserKey(channelEnum, sdk_uid, channel));
+	if (record == null) {
+	    record = this.selectUserRecordByDB(channelEnum, sdk_uid, channel);
+	}
 	return record;
     }
 
