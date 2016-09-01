@@ -2,6 +2,7 @@ package com.server.core.cach;
 
 import java.util.concurrent.ConcurrentHashMap;
 
+import com.server.core.Config;
 import com.server.db.model.UserRecord;
 
 /**
@@ -11,7 +12,6 @@ import com.server.db.model.UserRecord;
  */
 public class UserCach implements ICach<String, UserRecord> {
     private ConcurrentHashMap<String, UserRecord> cach = new ConcurrentHashMap<>();
-    private int size = 100000;
     private static final UserCach instance = new UserCach();
 
     private UserCach() {
@@ -34,11 +34,8 @@ public class UserCach implements ICach<String, UserRecord> {
 
     @Override
     public UserRecord put(String key, UserRecord user) {
-	if (cach.size() >= size) {
+	if (cach.size() >= Config.UserCachSize) {
 	    cach.clear();
-	    size = 0;
-	} else {
-	    size++;
 	}
 	return cach.put(key, user);
     }
