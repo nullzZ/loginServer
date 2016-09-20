@@ -22,7 +22,7 @@ public class Main {
     @PostConstruct
     public void init() {
 	try {
-	    // Config.loadServers();
+	    Config.loadSafeIp();
 	    serverSercice.load();
 
 	    logger.info("[启动]登录服务器启动成功-------------!");

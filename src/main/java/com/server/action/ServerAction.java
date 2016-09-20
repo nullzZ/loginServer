@@ -25,7 +25,7 @@ public class ServerAction {
     @Resource
     private ServerSercice serverSercice;
 
-    @RequestMapping(value = "/servers", method = RequestMethod.POST)
+    @RequestMapping(value = "/servers", method = RequestMethod.GET)
     public void getServers(HttpServletRequest request, HttpServletResponse response) {
 	List<ServerRecord> list = ServerManager.getInstance().getServers();
 	JSONObject obj = new JSONObject();
