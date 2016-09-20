@@ -1,10 +1,12 @@
 package com.server;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
-import org.apache.commons.configuration.ConfigurationException;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
+
+import com.server.core.service.ServerSercice;
 
 /**
  * 
@@ -14,14 +16,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class Main {
     private static final Logger logger = Logger.getLogger(Main.class);
+    @Resource
+    private ServerSercice serverSercice;
 
     @PostConstruct
     public void init() {
 	try {
-	    Config.loadServers();
+	    // Config.loadServers();
+	    serverSercice.load();
 
 	    logger.info("[启动]登录服务器启动成功-------------!");
-	} catch (ConfigurationException e) {
+	} catch (Exception e) {
 	    e.printStackTrace();
 	    System.exit(0);
 	}
