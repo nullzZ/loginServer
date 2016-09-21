@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50711
 File Encoding         : 65001
 
-Date: 2016-08-23 13:55:56
+Date: 2016-09-21 14:36:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for t_servers
+-- ----------------------------
+DROP TABLE IF EXISTS `t_servers`;
+CREATE TABLE `t_servers` (
+  `uid` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT '',
+  `channelId` varchar(100) DEFAULT '',
+  `serverId` varchar(100) DEFAULT NULL,
+  `host` varchar(100) DEFAULT '',
+  `port` int(11) DEFAULT NULL,
+  `createDate` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_users
