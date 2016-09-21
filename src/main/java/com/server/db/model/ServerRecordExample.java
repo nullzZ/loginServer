@@ -2,6 +2,7 @@ package com.server.db.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Date;
 
 public class ServerRecordExample {
     /**
@@ -502,6 +503,76 @@ public class ServerRecordExample {
 	    return (Criteria) this;
 	}
 
+	public Criteria andWaiHostIsNull() {
+	    addCriterion("waiHost is null");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostIsNotNull() {
+	    addCriterion("waiHost is not null");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostEqualTo(String value) {
+	    addCriterion("waiHost =", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostNotEqualTo(String value) {
+	    addCriterion("waiHost <>", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostGreaterThan(String value) {
+	    addCriterion("waiHost >", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostGreaterThanOrEqualTo(String value) {
+	    addCriterion("waiHost >=", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostLessThan(String value) {
+	    addCriterion("waiHost <", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostLessThanOrEqualTo(String value) {
+	    addCriterion("waiHost <=", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostLike(String value) {
+	    addCriterion("waiHost like", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostNotLike(String value) {
+	    addCriterion("waiHost not like", value, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostIn(List<String> values) {
+	    addCriterion("waiHost in", values, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostNotIn(List<String> values) {
+	    addCriterion("waiHost not in", values, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostBetween(String value1, String value2) {
+	    addCriterion("waiHost between", value1, value2, "waiHost");
+	    return (Criteria) this;
+	}
+
+	public Criteria andWaiHostNotBetween(String value1, String value2) {
+	    addCriterion("waiHost not between", value1, value2, "waiHost");
+	    return (Criteria) this;
+	}
+
 	public Criteria andPortIsNull() {
 	    addCriterion("port is null");
 	    return (Criteria) this;
@@ -559,6 +630,66 @@ public class ServerRecordExample {
 
 	public Criteria andPortNotBetween(Integer value1, Integer value2) {
 	    addCriterion("port not between", value1, value2, "port");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateIsNull() {
+	    addCriterion("createDate is null");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateIsNotNull() {
+	    addCriterion("createDate is not null");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateEqualTo(Date value) {
+	    addCriterion("createDate =", value, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateNotEqualTo(Date value) {
+	    addCriterion("createDate <>", value, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateGreaterThan(Date value) {
+	    addCriterion("createDate >", value, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateGreaterThanOrEqualTo(Date value) {
+	    addCriterion("createDate >=", value, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateLessThan(Date value) {
+	    addCriterion("createDate <", value, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateLessThanOrEqualTo(Date value) {
+	    addCriterion("createDate <=", value, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateIn(List<Date> values) {
+	    addCriterion("createDate in", values, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateNotIn(List<Date> values) {
+	    addCriterion("createDate not in", values, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateBetween(Date value1, Date value2) {
+	    addCriterion("createDate between", value1, value2, "createDate");
+	    return (Criteria) this;
+	}
+
+	public Criteria andCreateDateNotBetween(Date value1, Date value2) {
+	    addCriterion("createDate not between", value1, value2, "createDate");
 	    return (Criteria) this;
 	}
     }
