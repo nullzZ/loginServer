@@ -56,6 +56,11 @@
 			<generatedKey column="uid" sqlStatement="Mysql"
 				identity="true" />
 		</table>
+		<table tableName="channels" domainObjectName="ChannelRecord">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="uid" sqlStatement="Mysql"
+				identity="true" />
+		</table>
 
 	</context>
 </generatorConfiguration>

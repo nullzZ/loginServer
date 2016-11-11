@@ -26,21 +26,6 @@ public class UserService implements IUserService {
     @Resource
     private UserRecordMapper userRecordMapper;
 
-    // @Override
-    // public UserRecord registerUser(String uid, int channel, int lastServerId)
-    // {
-    // String userId = this.getUniqeUserId(uid, channel);
-    // if (UserCach.getInstance().check(userId)) {
-    // return UserCach.getInstance().get(userId);
-    // } else {
-    // UserRecord record = selectUserRecordByDB(uid, channel);
-    // if (null == record) {
-    // return this.createUser(uid, channel, lastServerId);
-    // } else {
-    // return record;
-    // }
-    // }
-    // }
     @Override
     public boolean insertDB(UserRecord user) {
 	return userRecordMapper.insertSelective(user) > 0;

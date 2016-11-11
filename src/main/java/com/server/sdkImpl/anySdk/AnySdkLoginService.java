@@ -79,7 +79,7 @@ public class AnySdkLoginService extends AbsLoginService {
 	OutputStream sOutputStream = null;
 
 	try {
-	    ServerRecord server = ServerManager.getInstance().get(channelID, serverID);
+	    ServerRecord server = ServerManager.getInstance().get(serverID);
 	    if (server == null) {
 		return false;
 	    }

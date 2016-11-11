@@ -1,6 +1,6 @@
 package com.server.action;
 
-import java.util.List;
+import java.util.Iterator;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,10 +27,11 @@ public class ServerAction {
 
     @RequestMapping(value = "/servers", method = RequestMethod.GET)
     public void getServers(HttpServletRequest request, HttpServletResponse response) {
-	List<ServerRecord> list = ServerManager.getInstance().getServers();
+	Iterator<ServerRecord> list = ServerManager.getInstance().getServers().values().iterator();
 	JSONObject obj = new JSONObject();
 	JSONArray array = new JSONArray();
-	for (ServerRecord s : list) {
+	while (list.hasNext()) {
+	    ServerRecord s = list.next();
 	    array.put(JSONUtils.toJson(s));
 	}
 	try {

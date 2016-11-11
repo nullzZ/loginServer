@@ -19,6 +19,8 @@ public abstract class AbsLoginService implements ILoginService {
 
     public LoginResult handle(ChannelEnum channelEnum, String uid, String serverID, String channelID, String device,
 	    String deviceVersion, String loginIP) {
+	// 判断渠道是否存在！！！！！！！！！！！！！！！
+
 	UserRecord userRecord = userService.register(channelEnum, uid, serverID, channelID, device, deviceVersion,
 		loginIP);
 	if (null == userRecord) {
