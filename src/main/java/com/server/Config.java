@@ -18,8 +18,8 @@ public class Config {
      */
     public static final String LOGIN_CHECK_URL = "http://oauth.anysdk.com/api/User/LoginOauth/";
     public static final String USER_AGENT = "px v1.0";
-    public static final String KEY = "fjalwrjfkfj4723894723";
-    public static final String VALUE = "235sgdsgds435435567df";
+    public static final String KEY = "123123";
+    public static final String VALUE = "123123";
     private static String CONFIG_PATH = System.getProperty("myLoginConfig");
     public static List<String> SafeIps = new ArrayList<>();
 
